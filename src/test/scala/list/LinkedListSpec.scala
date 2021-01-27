@@ -115,6 +115,34 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
 
       filtered shouldBe Nil
     }
+
+    it("should find element at its index") {
+      val original = LinkedList("a", "b", "c")
+
+      original(1) shouldEqual "b"
+    }
+
+    it("should find last element at its index") {
+      val original = LinkedList("a", "b", "c")
+
+      original(2) shouldEqual "c"
+    }
+
+    it("should throw if no elements exist at index") {
+      val original = LinkedList("a", "b", "c")
+
+      intercept[NoSuchElementException](
+        original(45)
+      ).getMessage shouldEqual "List does not contain element at index 45"
+    }
+
+    it("should throw if index is less than zero") {
+      val original = LinkedList("a", "b", "c")
+
+      intercept[NoSuchElementException](
+        original(-2)
+      ).getMessage shouldEqual "List does not contain element at index -2"
+    }
   }
 
   describe("Nil") {
@@ -153,6 +181,12 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
     it("should filter to nil") {
       Nil.filter(_ => true) shouldEqual Nil
       Nil.filter(_ => false) shouldEqual Nil
+    }
+
+    it("should not have elements at index in empty list") {
+      intercept[NoSuchElementException](
+        Nil(4)
+      ).getMessage shouldEqual "Cannot access index of empty list"
     }
   }
 }

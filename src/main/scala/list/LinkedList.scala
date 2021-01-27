@@ -1,5 +1,7 @@
 package list
 
+import scala.annotation.tailrec
+
 sealed trait SinglyLinkedList[+A] {
 
   /**
@@ -43,6 +45,11 @@ sealed trait SinglyLinkedList[+A] {
     * predicate function
     */
   def filter(fn: A => Boolean): SinglyLinkedList[A]
+
+  /**
+    * Get the element at the given index, if any
+    */
+  def apply(index: Int): A
 }
 
 case object Nil extends SinglyLinkedList[Nothing] {
@@ -59,9 +66,15 @@ case object Nil extends SinglyLinkedList[Nothing] {
     throw new NoSuchElementException("Cannot get last element of empty list")
 
   def reverse: SinglyLinkedList[Nothing] = Nil
+
   def cons[B](other: B): SinglyLinkedList[B] = LinkedList(other)
+
   def map[B](fn: Nothing => B): SinglyLinkedList[Nothing] = Nil
+
   def filter(fn: Nothing => Boolean): SinglyLinkedList[Nothing] = Nil
+
+  def apply(index: Int) =
+    throw new NoSuchElementException("Cannot access index of empty list")
 }
 
 case class LinkedList[A](
@@ -117,6 +130,27 @@ case class LinkedList[A](
         case LinkedList(_, t)          => t.filter(fn)
       }
     }
+  }
+
+  def apply(index: Int): A = {
+    @tailrec
+    def findElemAtIndex(
+        index: Int,
+        currentIndex: Int,
+        list: SinglyLinkedList[A]
+    ): A = {
+      if (currentIndex > index || list == Nil) {
+        throw new NoSuchElementException(
+          s"List does not contain element at index $index"
+        )
+      } else if (index == currentIndex && list != Nil) {
+        list.head
+      } else {
+        findElemAtIndex(index, currentIndex + 1, list.tail)
+      }
+    }
+
+    findElemAtIndex(index, 0, this)
   }
 }
 
