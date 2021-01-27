@@ -180,4 +180,13 @@ object LinkedList {
       LinkedList(elems.head, LinkedList(elems.tail: _*))
     }
   }
+
+  def apply[A](head: SinglyLinkedList[A],
+               tail: SinglyLinkedList[A]): SinglyLinkedList[A] = {
+    if (head == Nil) {
+      tail
+    } else {
+      LinkedList(head, tail)
+    }
+  }
 }

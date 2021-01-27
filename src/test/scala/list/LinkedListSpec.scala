@@ -11,6 +11,12 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
       actual shouldBe Nil
     }
 
+    it("should create a list from an empty list and a non-empty tail") {
+      val actual = LinkedList(Nil, LinkedList("foo"))
+
+      actual shouldEqual LinkedList("foo")
+    }
+
     it("has a head") {
       val actual = LinkedList("cats")
 
