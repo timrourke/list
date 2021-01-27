@@ -70,8 +70,9 @@ case class LinkedList[A](
 ) extends SinglyLinkedList[A] {
   def last: A = {
     tail match {
-      case Nil                 => head
-      case LinkedList(_, tail) => tail.last
+      case Nil                => head
+      case LinkedList(h, Nil) => h
+      case LinkedList(_, t)   => t.last
     }
   }
 
@@ -89,7 +90,7 @@ case class LinkedList[A](
   def reverse: SinglyLinkedList[A] = {
     tail match {
       case Nil => LinkedList(head)
-      case LinkedList(_, t) if t != Nil =>
+      case LinkedList(_, t: LinkedList[A]) =>
         LinkedList(last, LinkedList(head, tail.init).reverse)
       case LinkedList(h, Nil) => LinkedList(h, LinkedList(head))
     }

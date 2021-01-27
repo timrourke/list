@@ -69,6 +69,12 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
       original.reverse shouldEqual LinkedList("c", "b", "a")
     }
 
+    it("should reverse the elements in a longer list") {
+      val original = LinkedList(1, 2, 3, 4, 5, 6, 7)
+
+      original.reverse shouldEqual LinkedList(7, 6, 5, 4, 3, 2, 1)
+    }
+
     it("should reverse the elements in a single element list") {
       val original = LinkedList("foo")
 
