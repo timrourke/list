@@ -2,6 +2,9 @@ package list
 
 import scala.annotation.tailrec
 
+/**
+  * A singly linked list of a given type
+  */
 sealed trait SinglyLinkedList[+A] {
 
   /**
@@ -62,6 +65,9 @@ sealed trait SinglyLinkedList[+A] {
   def size: Int
 }
 
+/**
+  * An empty list
+  */
 case object Nil extends SinglyLinkedList[Nothing] {
   def head: Nothing =
     throw new NoSuchElementException("Cannot get head of empty list")
@@ -91,6 +97,9 @@ case object Nil extends SinglyLinkedList[Nothing] {
   def size = 0
 }
 
+/**
+  * A non-empty list (a list containing at least one element)
+  */
 case class LinkedList[A](
     head: A = Nil,
     tail: SinglyLinkedList[A] = Nil
