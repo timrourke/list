@@ -5,6 +5,12 @@ import org.scalatest.matchers.should.Matchers
 
 class LinkedListSpec extends AnyFunSpec with Matchers {
   describe("LinkedList") {
+    it("should create an empty list when nothing provided") {
+      val actual = LinkedList()
+
+      actual shouldBe Nil
+    }
+
     it("has a head") {
       val actual = LinkedList("cats")
 
