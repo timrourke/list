@@ -196,5 +196,11 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
         Nil(4)
       ).getMessage shouldEqual "Cannot access index of empty list"
     }
+
+    it("should cons elements to an empty list to create a complete list") {
+      val actual = 1 :: 2 :: 3 :: 4 :: 5 :: Nil
+
+      actual shouldEqual LinkedList(1, 2, 3, 4, 5)
+    }
   }
 }
