@@ -90,7 +90,7 @@ case class LinkedList[A](
   def reverse: SinglyLinkedList[A] = {
     tail match {
       case Nil => LinkedList(head)
-      case LinkedList(_, t: LinkedList[A]) =>
+      case LinkedList(_, _: LinkedList[A]) =>
         LinkedList(last, LinkedList(head, tail.init).reverse)
       case LinkedList(h, Nil) => LinkedList(h, LinkedList(head))
     }
