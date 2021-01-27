@@ -32,7 +32,7 @@ sealed trait SinglyLinkedList[+A] {
   /**
     * Prepend an element to the beginning of the list
     */
-  def cons[B >: A](other: B): SinglyLinkedList[B]
+  def ::[B >: A](other: B): SinglyLinkedList[B]
 
   /**
     * Produce a new list containing the results of calling a given function
@@ -67,7 +67,7 @@ case object Nil extends SinglyLinkedList[Nothing] {
 
   def reverse: SinglyLinkedList[Nothing] = Nil
 
-  def cons[B](other: B): SinglyLinkedList[B] = LinkedList(other)
+  def ::[B](other: B): SinglyLinkedList[B] = LinkedList(other)
 
   def map[B](fn: Nothing => B): SinglyLinkedList[Nothing] = Nil
 
@@ -109,7 +109,7 @@ case class LinkedList[A](
     }
   }
 
-  def cons[B >: A](other: B): SinglyLinkedList[B] = {
+  def ::[B >: A](other: B): SinglyLinkedList[B] = {
     other match {
       case Nil => this
       case _   => LinkedList(other, this)

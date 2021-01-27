@@ -3,6 +3,8 @@ package list
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
+import scala.::
+
 class LinkedListSpec extends AnyFunSpec with Matchers {
   describe("LinkedList") {
     it("has a head") {
@@ -33,16 +35,22 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
 
     it("should cons an element") {
       val original = LinkedList("bar")
-      val consed = original.cons("foo")
+      val consed = "foo" :: original
 
       consed shouldEqual LinkedList("foo", "bar")
     }
 
     it("should not cons nil") {
       val original = LinkedList("foo")
-      val consed = original.cons(Nil)
+      val consed = Nil :: original
 
       consed shouldEqual original
+    }
+
+    it("should cons multiple elements into a list") {
+      val list = 1 :: 2 :: 3 :: LinkedList(4)
+
+      list shouldEqual LinkedList(1, 2, 3, 4)
     }
 
     it("should get the last element in the list") {
