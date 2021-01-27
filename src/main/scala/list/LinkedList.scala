@@ -181,8 +181,11 @@ object LinkedList {
     }
   }
 
-  def apply[A](head: SinglyLinkedList[A],
-               tail: SinglyLinkedList[A]): SinglyLinkedList[A] = {
+  @tailrec
+  def apply[A](
+      head: SinglyLinkedList[A],
+      tail: SinglyLinkedList[A]
+  ): SinglyLinkedList[A] = {
     if (head == Nil) {
       tail
     } else {
