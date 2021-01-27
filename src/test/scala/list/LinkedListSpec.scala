@@ -155,6 +155,14 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
     it("should not be empty") {
       LinkedList(4, 2, 9).isEmpty shouldBe false
     }
+
+    it("should have a size") {
+      LinkedList(1, 2, 1).size shouldBe 3
+    }
+
+    it("should have a size of 1 for a single element list") {
+      LinkedList("yo").size shouldBe 1
+    }
   }
 
   describe("Nil") {
@@ -209,6 +217,10 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
 
     it("should be empty") {
       Nil.isEmpty shouldBe true
+    }
+
+    it("should have a size of 0") {
+      Nil.size shouldBe 0
     }
   }
 }

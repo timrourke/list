@@ -55,6 +55,11 @@ sealed trait SinglyLinkedList[+A] {
     * Whether or not the list is empty
     */
   def isEmpty: Boolean
+
+  /**
+    * The size of the list
+    */
+  def size: Int
 }
 
 case object Nil extends SinglyLinkedList[Nothing] {
@@ -82,6 +87,8 @@ case object Nil extends SinglyLinkedList[Nothing] {
     throw new NoSuchElementException("Cannot access index of empty list")
 
   def isEmpty: Boolean = true
+
+  def size = 0
 }
 
 case class LinkedList[A](
@@ -161,6 +168,8 @@ case class LinkedList[A](
   }
 
   def isEmpty: Boolean = false
+
+  def size: Int = 1 + tail.size
 }
 
 object LinkedList {
