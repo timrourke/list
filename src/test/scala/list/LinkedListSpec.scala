@@ -3,8 +3,6 @@ package list
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import scala.::
-
 class LinkedListSpec extends AnyFunSpec with Matchers {
   describe("LinkedList") {
     it("has a head") {
