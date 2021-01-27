@@ -50,6 +50,11 @@ sealed trait SinglyLinkedList[+A] {
     * Get the element at the given index, if any
     */
   def apply(index: Int): A
+
+  /**
+    * Whether or not the list is empty
+    */
+  def isEmpty: Boolean
 }
 
 case object Nil extends SinglyLinkedList[Nothing] {
@@ -75,6 +80,8 @@ case object Nil extends SinglyLinkedList[Nothing] {
 
   def apply(index: Int) =
     throw new NoSuchElementException("Cannot access index of empty list")
+
+  def isEmpty: Boolean = true
 }
 
 case class LinkedList[A](
@@ -152,6 +159,8 @@ case class LinkedList[A](
 
     findElemAtIndex(index, 0, this)
   }
+
+  def isEmpty: Boolean = false
 }
 
 object LinkedList {

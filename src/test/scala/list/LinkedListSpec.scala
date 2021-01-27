@@ -151,6 +151,10 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
         original(-2)
       ).getMessage shouldEqual "List does not contain element at index -2"
     }
+
+    it("should not be empty") {
+      LinkedList(4, 2, 9).isEmpty shouldBe false
+    }
   }
 
   describe("Nil") {
@@ -201,6 +205,10 @@ class LinkedListSpec extends AnyFunSpec with Matchers {
       val actual = 1 :: 2 :: 3 :: 4 :: 5 :: Nil
 
       actual shouldEqual LinkedList(1, 2, 3, 4, 5)
+    }
+
+    it("should be empty") {
+      Nil.isEmpty shouldBe true
     }
   }
 }
